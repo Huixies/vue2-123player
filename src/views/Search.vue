@@ -9,7 +9,15 @@
     finished-text="没有更多了"
     @load="onLoad"
     >
-      <van-cell v-for="(item , index) in musicList" :key="index">{{item.name}}/{{item.id}}</van-cell>
+      <van-cell 
+              class="list"
+              v-for="(item,index) in musicList" 
+              :key="index"
+
+      >
+        <span class="song">{{item.name}}</span>
+        <span class="singer">{{item.artists[0].name}}</span>
+      </van-cell>
     </van-list>
 
   </div>
@@ -57,3 +65,29 @@ export default {
   }
 
 </script>
+
+
+<style>
+  .list{
+    position: relative;
+    height: 3rem;
+    line-height: 3rem;
+  }
+  .song {
+    position: absolute;
+    top:25%;
+    display: inline-block;
+    width: 8rem;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+  }
+
+  .singer{
+    position: absolute;
+    top:25%;
+    right: 0;
+    margin-right: 0.4rem;
+  }
+</style>

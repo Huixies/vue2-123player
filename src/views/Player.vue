@@ -4,11 +4,10 @@
        <van-cell class="singer-name" value="内容"/>
    </van-cell-group>
    <van-image
-   class="sing-image"
- 
-  fit="cover"
-  src="https://img01.yzcdn.cn/vant/cat.jpeg"
-/>
+        class="sing-image"
+        fit="cover"
+         src="https://img01.yzcdn.cn/vant/cat.jpeg"
+    />
   </div>
 </template>
 
