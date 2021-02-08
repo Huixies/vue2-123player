@@ -28,7 +28,6 @@ export default {
 .footer{
     position: fixed;
     bottom: 0;
-    margin: 0 auto;
     left: 0;
     right: 0;
 }

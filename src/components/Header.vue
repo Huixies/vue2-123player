@@ -1,9 +1,7 @@
 <template>
     <div id="nav">
         <router-link to="/">搜索</router-link> |
-        <router-link to="/player">播放</router-link> |
-        <router-link to="/more">更多</router-link> |
-        <router-link to="/talk">评论</router-link>
+        <router-link to="/more">更多</router-link> 
     </div>
 </template>
 

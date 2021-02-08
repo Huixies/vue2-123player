@@ -9,11 +9,12 @@
     finished-text="没有更多了"
     @load="onLoad"
     >
-      <van-cell 
+      <van-cell
+              v-if="item.name || item.artists"
               class="list"
               v-for="(item,index) in musicList" 
               :key="index"
-
+              @click="toPlayer(item)"
       >
         <span class="song">{{item.name}}</span>
         <span class="singer">{{item.artists[0].name}}</span>
@@ -40,7 +41,6 @@ export default {
       this.$axios("https://autumnfish.cn/search?keywords=" + this.value)
         .then(res=>{
           this.musicList = res.data.result.songs;
-          console.log(this.musicList);
         })
         .catch(err=>{
            console.log(err);
@@ -60,9 +60,15 @@ export default {
           this.finished = true;
         }
       }, 1000);
+      },
+      
+      //点击列表内容后 跳转并传入列表id
+      toPlayer(item){
+        this.$router.push({path:'/player/'+ item.id});
       }
   } 
   }
+  
 
 </script>
 

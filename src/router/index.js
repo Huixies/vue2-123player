@@ -5,22 +5,20 @@ import Search from '../views/Search.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  //搜索
   {
     path: '/',
     component: Search
   },
   {
-    path: '/player',
+    path: '/player/:id',
     component: () => import('../views/Player.vue')
   },
   {
     path: '/more',
     component: () => import('../views/More.vue')
   },
-  {
-    path: '/talk',
-    component: () => import('../views/Talk.vue')
-  }
+ 
 ]
 
 const router = new VueRouter({
