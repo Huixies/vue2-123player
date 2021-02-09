@@ -12,7 +12,7 @@ const routes = [
   },
   {
     path: '/player/:id',
-    component: () => import('../views/Player.vue')
+    component: () => import('../views/Player.vue'),
   },
   {
     path: '/more',

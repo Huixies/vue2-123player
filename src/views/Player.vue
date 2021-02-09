@@ -1,11 +1,14 @@
 <template>
-  <div class="player">
+  <div class="player"> 
+    <!-- 歌名 歌手名 -->
     <van-cell-group>
       <van-cell>
         <div class="music-name">{{musicName}}</div>
         <div class="singer-name">{{singerName}}</div>
       </van-cell>
    </van-cell-group>
+
+   <!-- 封面 -->
    <van-image
         v-if="musicCover"
         class="sing-image"
@@ -18,7 +21,11 @@
         <van-icon class="video-o" @click="showPopup1"  v-if="songMV!==null"  name="video-o" size="2rem" />
         <van-icon class="comment-o"  @click="showPopup2"  v-if="userTalk.length!==0 " name="comment-o"  size="2rem" />
     </div>
-    
+
+    <div>
+        <audio class="myaudio" ref='audio' @play="play()" @pause="pause()" :src="musicUrl" controls autoplay loop></audio>
+    </div>
+
     <!-- 评论区 -->
     <van-action-sheet v-model="isShow2" title="热门评论">
     <div class="content">
@@ -43,6 +50,7 @@
 </template>
 
 <script>
+
 export default {
   data(){
    return {
@@ -54,7 +62,9 @@ export default {
      loading: true,
      show: false,
      isShow1:false,
-     isShow2:false
+     isShow2:false,
+     musicUrl: null,
+     isPlaying: '',
    }
   },
   methods: {
@@ -77,7 +87,7 @@ export default {
        this.$axios("https://autumnfish.cn/comment/hot?type=0&id=" + this.id)
         .then(res =>{
           this.userTalk = res.data.hotComments;
-        //   console.log(res.data.hotComments);
+          // console.log(res.data.hotComments);
         })
          .catch(err=>{
            console.log(err);
@@ -87,13 +97,22 @@ export default {
        this.$axios("https://autumnfish.cn/mv/url?type=1004&id=" + this.id)
         .then(res =>{
           this.songMV = res.data.data.url;
-          console.log(this.songMV );
+          // console.log(this.songMV );
         })
          .catch(err=>{
            console.log(err);
          })
 
-
+        //歌曲链接
+        this.$axios("https://autumnfish.cn/song/url?id=" + this.id)
+        .then(res =>{
+        //  console.log(res.data);
+         this.musicUrl = res.data.data[0].url;
+        //  console.log(this.musicUrl);
+        })
+         .catch(err=>{
+           console.log(err);
+         })
 
     },
     showPopup1() {
@@ -108,7 +127,14 @@ export default {
     showPopup4() {
         this.isShow2 = false;
     },
-   
+    play(){
+      // console.log("play");
+      this.isPlaying = true;
+    },
+    pause(){
+      // console.log("pause");
+      this.isPlaying = false;
+    },
 
   
   },
@@ -124,6 +150,12 @@ export default {
 </script>
 
 <style scoped>
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
   img {
     width: 40px;
     height: 40px;
@@ -188,6 +220,22 @@ export default {
    margin:0 ;
  }
 
+.user-content{
+ font-size: 16px;
+ line-height: 1.3rem;
+}
+
+ .myaudio {
+    width: 100%;
+    outline: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #f1f3f4;
+    vertical-align:bottom;  
+    /* 底部消除缝隙 */
+ }
 
 
 

@@ -16,10 +16,10 @@ data(){
     getMusicUrl(){
       
        this.id =  this.$route.params.id;
-      //  console.log(this.id);
+       console.log(this.id);
        this.$axios("https://autumnfish.cn/song/url?id=" + this.id)
         .then(res =>{
-        //   console.log(res.data.data[0].url);
+         console.log(res.data);
          this.musicUrl = res.data.data[0].url;
         //  console.log(this.musicUrl);
         })
