@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Search from '../views/Search.vue'
+import Player from '../views/Player.vue';
+import More from '../views/More.vue';
 
 Vue.use(VueRouter)
 
@@ -12,11 +14,11 @@ const routes = [
   },
   {
     path: '/player/:id',
-    component: () => import('../views/Player.vue'),
+    component: Player
   },
   {
     path: '/more',
-    component: () => import('../views/More.vue')
+    component: More
   },
  
 ]

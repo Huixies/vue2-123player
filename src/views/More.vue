@@ -36,10 +36,18 @@
         </van-swipe>
 
         <van-divider  dashed>新碟上架</van-divider>
-        <van-loading type="spinner" v-if="musicName.length==0"/>
-        <van-grid  class="grid1" v-for="(item,index) in musicName" :key="index">
+
+        <div>
+          <van-loading type="spinner" v-if="musicName.length==0"/>
+          <div class="more-content" v-if="item.picUrl || item.name" v-for="(item,index) in musicName" :key="index" @click="toPlayer(item)">
+            <div class="more-img"><img :src="item.picUrl" alt=""></div>
+            <div class="more-name">{{item.name}}</div>
+          </div>
+        </div>
+        
+        <!-- <van-grid  class="grid1" v-for="(item,index) in musicName" :key="index">
         <van-grid-item v-if="item.picUrl || item.name" @click="toPlayer(item)"  :icon="item.picUrl" :text="item.name" />
-        </van-grid>
+        </van-grid> -->
 
     </div>
 </template>
@@ -74,8 +82,20 @@ export default {
 </script>
 
 <style>
-  .grid1{
-    display: inline-block;
-    width: 5rem;
-  }
+ .more-content{
+   display: inline-block;
+   width: 6rem;
+   height: 7rem;
+ }
+ img{
+   width: 4.5rem;
+   height:4.5rem;
+   border-radius: 10px;
+ }
+ .more-name{
+   font-size: 14px;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+ }
 </style>
