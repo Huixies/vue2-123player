@@ -155,6 +155,7 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
+     
 }
   img {
     width: 40px;
@@ -187,8 +188,13 @@ export default {
   }
   
   .music-name{
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin: 0.3rem 0;
+    color: rgb(43, 43, 43);
+  }
+
+  .singer-name{
+    color: rgb(133, 133, 133);
   }
 
   .video-o{
@@ -223,6 +229,7 @@ export default {
 .user-content{
  font-size: 16px;
  line-height: 1.3rem;
+ color: #757575;
 }
 
  .myaudio {
